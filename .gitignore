@@ -27,6 +27,4 @@ package-lock.json
 # Yarn lock file
 yarn.lock
 
-# Windows thumbnail cache
-Thumbs.db
 
