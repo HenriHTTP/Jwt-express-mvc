@@ -4,11 +4,10 @@ const cors = require('cors');
 const path = require('path');
 const flash = require('express-flash');
 const AuthRoutes = require('./routes/AuthRoutes');
-
 //custom middlewares
 const sessionConfig = require('./middlewares/sessionConfig');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
-
+const sessionLocal = require('./middlewares/sessionLocalMiddleware');
 //variables
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -26,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 //use custom middlewares
 app.use(sessionConfig);
 app.use(sessionMiddleware);
+app.use(sessionLocal);
 
 //routes
 app.get('/', (req, res) => {

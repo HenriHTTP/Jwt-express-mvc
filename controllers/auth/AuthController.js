@@ -5,6 +5,7 @@ const router = express.Router();
 const { Op, where } = require('sequelize');
 const users = require('../../models/users');
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 //starter class controller
 class Authcontroller {
@@ -12,7 +13,6 @@ class Authcontroller {
   static async Register(req, res) {
     try {
       const { name, email, password } = req.body;
-      const reponse = await users.findAll();
       const salt = bcrypt.genSaltSync(10);
       const hashedPassword = bcrypt.hashSync(password, salt);
       const user = {
@@ -20,8 +20,10 @@ class Authcontroller {
         email,
         password: hashedPassword,
       };
-      users.create(user);
-      res.status(200).json({ mensage: 'register complete' });
+      const createdUser = await users.create(user);
+      req.session.userid = createdUser.id;
+      req.session.username = createdUser.name;
+      res.redirect('/');
     } catch (err) {
       res.json({ mensage: `error: ${err} ` });
     }
@@ -58,6 +60,15 @@ class Authcontroller {
       res.render('main', { title, bodyComponent });
     } catch (err) {
       console.log(err);
+    }
+  }
+  //logout
+  static async Logout(req, res) {
+    try {
+      req.session.destroy();
+      res.redirect('/login');
+    } catch (err) {
+      res.status(500).json({ message: `error : ${err}` });
     }
   }
 }
