@@ -46,7 +46,9 @@ class Authcontroller {
       const passwordMatch = bcrypt.compareSync(password, user.password);
 
       if (user && passwordMatch) {
-        console.log('login completed');
+        req.session.userid = user.id;
+        req.session.username = user.name;
+        res.redirect('/');
       }
     } catch (err) {
       res.status(400).json({ message: `erro ${err}` });

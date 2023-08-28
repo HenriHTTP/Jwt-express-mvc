@@ -9,7 +9,7 @@ const sessionConfig = require('./middlewares/sessionConfig');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
 const sessionLocal = require('./middlewares/sessionLocalMiddleware');
 //variables
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8800;
 const app = express();
 
 //engines
@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 //middlewares
 app.use(express.json());
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(express.urlencoded({ extended: true }));
 //use custom middlewares
