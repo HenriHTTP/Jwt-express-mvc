@@ -23,7 +23,7 @@ class Authcontroller {
       const createdUser = await users.create(user);
       req.session.userid = createdUser.id;
       req.session.username = createdUser.name;
-      res.redirect('/');
+      res.redirect('/home');
     } catch (err) {
       res.json({ mensage: `error: ${err} ` });
     }
@@ -45,11 +45,9 @@ class Authcontroller {
       const user = await users.findOne({ where: { email: email } });
       const passwordMatch = bcrypt.compareSync(password, user.password);
 
-      if (user && passwordMatch) {
-        req.session.userid = user.id;
-        req.session.username = user.name;
-        res.redirect('/');
-      }
+      req.session.userid = user.id;
+      req.session.username = user.name;
+      res.redirect('/home');
     } catch (err) {
       res.status(400).json({ message: `erro ${err}` });
     }
@@ -58,6 +56,15 @@ class Authcontroller {
   static RenderLogin(req, res) {
     try {
       const bodyComponent = 'components/login';
+      const title = 'login';
+      res.render('main', { title, bodyComponent });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  static RenderHome(req, res) {
+    try {
+      const bodyComponent = 'components/home';
       const title = 'login';
       res.render('main', { title, bodyComponent });
     } catch (err) {

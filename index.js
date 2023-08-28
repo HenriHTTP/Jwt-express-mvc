@@ -27,12 +27,6 @@ app.use(sessionMiddleware);
 app.use(sessionLocal);
 
 //routes
-app.get('/', (req, res) => {
-  const bodyComponent = 'components/home';
-  const title = 'home';
-  res.render('main', { title, bodyComponent });
-});
-
 app.use('/', AuthRoutes);
 //models
 

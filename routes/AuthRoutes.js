@@ -9,5 +9,7 @@ router.get('/register', Authcontroller.RenderRegister);
 router.post('/login', LoginAuthentication, Authcontroller.Login);
 router.get('/login', Authcontroller.RenderLogin);
 router.get('/logout', Authcontroller.Logout);
+router.get('/home', Authcontroller.RenderHome);
+router.get('/', Authcontroller.RenderLogin);
 
 module.exports = router;
