@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <!--<link rel="stylesheet" href="css/styles.css">-->
   
     <title><%= title %></title>
   </head>
@@ -13,7 +13,7 @@
     <nav>
       <nav class="m-auto flex justify-around w-ful text-white text-center p-5 bg-gray-900"> 
         <ul class="m-auto w-3/4 flex justify-around">
-          <li class="m-auto flex jutify-center"><a href="#" class="m-auto"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="m-auto flex jutify-center"><a href="/home" class="m-auto"><i class="fa-solid fa-house"></i> Home</a></li>
           <li class="m-auto flex jutify-center"><a href="/dashboard" class="m-auto"><i class="fa-solid fa-plus"></i> Dashboard</a></li>
           <% if (session.userid) { %>
             <li class="m-auto flex jutify-center"><a href="#" class="m-auto"><%= session.username %></a></li>

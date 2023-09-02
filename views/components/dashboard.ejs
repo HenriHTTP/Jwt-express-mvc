@@ -1,11 +1,17 @@
-<div>
-  <main>
-    <form action="" method="get">
-      <h1>New Post</h1>
-      <input type="submit" value="create" />
+<div class="h-screen flex justify-center flex-col bg-neutral-100">
+  <main
+    class="bg-red-500 m-auto w-96 p-10 rounded-lg flex justify-center flex-col border-solid border-2 border-neutral-600"
+  >
+    <form action="/create/post" method="get" class="m-auto text-lg">
+      <h1 class="text-xl text-center">New Post</h1>
+      <input
+        type="submit"
+        value="create"
+        class="p-3 bg-gray-900 text-white w-40 m-auto rounded-md text-base mt-6"
+      />
     </form>
+    <section class="m-auto">
+      <h1>all posts</h1>
+    </section>
   </main>
-  <section>
-    <h1>all posts</h1>
-  </section>
 </div>
