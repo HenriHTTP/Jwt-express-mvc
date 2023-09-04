@@ -6,6 +6,7 @@ const { Op, where } = require('sequelize');
 const users = require('../../models/users');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const posts = require('../../models/posts');
 
 //starter class controller
 class Authcontroller {
@@ -62,11 +63,13 @@ class Authcontroller {
       console.log(err);
     }
   }
-  static RenderHome(req, res) {
+  static async RenderHome(req, res) {
     try {
+      const allpost = await posts.findAll();
+
       const bodyComponent = 'components/home';
       const title = 'login';
-      res.render('main', { title, bodyComponent });
+      res.render('main', { title, bodyComponent, allpost });
     } catch (err) {
       console.log(err);
     }
