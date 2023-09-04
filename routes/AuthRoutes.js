@@ -11,6 +11,5 @@ router.post('/login', LoginAuthentication, Authcontroller.Login);
 router.get('/login', Authcontroller.RenderLogin);
 router.get('/logout', Authcontroller.Logout);
 router.get('/home', RoutesAuthentication, Authcontroller.RenderHome);
-router.get('/', Authcontroller.RenderLogin);
 
 module.exports = router;
