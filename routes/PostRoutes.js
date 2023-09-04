@@ -16,5 +16,6 @@ router.post(
   PostAthentication,
   PostController.CreatePost,
 );
-
+//router.get('/allPosts', PostController.DashboardPosts);
+router.post('/remove', RoutesAuthentication, PostController.RemovePost);
 module.exports = router;
