@@ -7,6 +7,7 @@ const users = require('../../models/users');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const posts = require('../../models/posts');
+const likes = require('../../models/like');
 
 //starter class controller
 class Authcontroller {
@@ -63,13 +64,27 @@ class Authcontroller {
       console.log(err);
     }
   }
+  // render home and likes per posts
   static async RenderHome(req, res) {
     try {
       const allpost = await posts.findAll();
+      const likesCounts = {};
+      // loop for index post.id in loop in find count
+      for (const post of allpost) {
+        const foundlinkes = await likes.count({
+          where: {
+            postId: post.id,
+          },
+        });
+        likesCounts[post.id] = foundlinkes;
+      }
+
+      console.log(likesCounts);
+      console.log(allpost);
 
       const bodyComponent = 'components/home';
       const title = 'login';
-      res.render('main', { title, bodyComponent, allpost });
+      res.render('main', { title, bodyComponent, allpost, likesCounts });
     } catch (err) {
       console.log(err);
     }

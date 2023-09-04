@@ -5,8 +5,17 @@
     <div class="m-auto text-xl">
       <ul>
         <% allpost.forEach((data) => { %>
-        <div class="m-auto p-5 flex flex-col">
+        <div class="m-auto p-5 flex flex-col text-center">
           <h1 class="text-center">"<%= data.title %>"</h1>
+
+          <form action="/like" method="get">
+            <input type="hidden" name="id" value="<%= data.id %>" />
+            <button type="submit" name="" value="">
+              <i class="fa-solid fa-heart"></i>
+              <%= likesCounts[data.id] || 0 %>
+            </button>
+          </form>
+
           <hr class="bg-gray-500 p-5 mt-6" />
         </div>
 
