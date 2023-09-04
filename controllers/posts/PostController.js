@@ -7,15 +7,27 @@ const users = require('../../models/users');
 class PostController {
   // Render the dashboard page
 
-  static RenderDashboard(req, res) {
+  static async RenderDashboard(req, res) {
     try {
-      const bodyComponent = 'components/dashboard';
+      const userId = req.session.userid;
       const title = 'Dashboard';
-      res.render('main', { title, bodyComponent });
+
+      const dashboardPosts = await posts.findAll({
+        where: {
+          userId,
+        },
+      });
+      const bodyComponent = 'components/dashboard';
+      res.render('main', {
+        title,
+        bodyComponent,
+        dashboardPosts: dashboardPosts,
+      });
     } catch (err) {
-      res.json({ mensage: `error: ${err} ` });
+      res.json({ message: `error: ${err} ` });
     }
   }
+
   // Render the create post page
 
   static RenderCreatePost(req, res) {
@@ -27,6 +39,7 @@ class PostController {
       res.json({ mensage: `error: ${err} ` });
     }
   }
+
   // Create a new post
 
   static async CreatePost(req, res) {
@@ -39,6 +52,15 @@ class PostController {
       res.redirect('/home');
     } catch (err) {
       return err;
+    }
+  }
+  static async RemovePost(req, res) {
+    try {
+      const foundPost = await posts.findByPk(req.body.id);
+      await foundPost.destroy();
+      res.redirect('/dashboard');
+    } catch (err) {
+      res.status(500).json({ mensage: `error ${err}` });
     }
   }
 }
