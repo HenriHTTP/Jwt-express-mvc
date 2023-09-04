@@ -3,3 +3,7 @@
 @import 'tailwindcss/utilities';
 
 /*  your custom class*/ 
+
+body{ 
+    background: whitesmoke;
+}
