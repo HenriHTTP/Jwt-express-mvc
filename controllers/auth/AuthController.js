@@ -79,9 +79,6 @@ class Authcontroller {
         likesCounts[post.id] = foundlinkes;
       }
 
-      console.log(likesCounts);
-      console.log(allpost);
-
       const bodyComponent = 'components/home';
       const title = 'login';
       res.render('main', { title, bodyComponent, allpost, likesCounts });

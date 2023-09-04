@@ -5,6 +5,7 @@ const path = require('path');
 const flash = require('express-flash');
 const AuthRoutes = require('./routes/AuthRoutes');
 const PostRoutes = require('./routes/PostRoutes');
+const LikesRoutes = require('./routes/likesRoutes');
 //custom middlewares
 const sessionConfig = require('./middlewares/sessionConfig');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
@@ -30,6 +31,7 @@ app.use(sessionLocal);
 //routes
 app.use('/', AuthRoutes);
 app.use('/', PostRoutes);
+app.use('/', LikesRoutes);
 //models
 
 app.listen(PORT, () => {

@@ -8,8 +8,9 @@
         <div class="m-auto p-5 flex flex-col text-center">
           <h1 class="text-center">"<%= data.title %>"</h1>
 
-          <form action="/like" method="get">
-            <input type="hidden" name="id" value="<%= data.id %>" />
+          <form action="/like" method="post">
+            <input type="hidden" name="postId" value="<%= data.id %>" />
+            <input type="hidden" name="userId" value="<%=session.userid %>" />
             <button type="submit" name="" value="">
               <i class="fa-solid fa-heart"></i>
               <%= likesCounts[data.id] || 0 %>
